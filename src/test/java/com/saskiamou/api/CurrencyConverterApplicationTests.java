@@ -1,4 +1,4 @@
-package com.skiatrie.currency_converter;
+package com.saskiamou.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
