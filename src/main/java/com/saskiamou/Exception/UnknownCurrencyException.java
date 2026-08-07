@@ -1,9 +1,8 @@
 package com.saskiamou.Exception;
 
 public class UnknownCurrencyException extends RuntimeException {
-    private String message;
-    public UnknownCurrencyException(String message) {
-        super(message);
-        this.message = message;
+
+    public UnknownCurrencyException(String to, String from) {
+      super(String.format("Unknown currency: %s, %s", to, from));
     }
 }
