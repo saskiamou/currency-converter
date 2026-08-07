@@ -1,5 +1,5 @@
-package com.saskiamou.api.Controller;
-import com.saskiamou.api.service.ConversionService;
+package com.saskiamou.Controller;
+import com.saskiamou.service.ConversionService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

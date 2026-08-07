@@ -1,5 +1,5 @@
-package com.saskiamou.api.service;
-import com.saskiamou.api.UnknownCurrencyException;
+package com.saskiamou.service;
+import com.saskiamou.Exception.UnknownCurrencyException;
 
 import org.springframework.stereotype.Service;
 import java.util.Map;
