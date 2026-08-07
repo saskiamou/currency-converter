@@ -19,7 +19,7 @@ public class ConversionServiceImpl implements ConversionService {
         Double fromRate = rates.get(from);
         Double toRate = rates.get(to);
         if (fromRate == null || toRate == null) {
-            throw new UnknownCurrencyException(message);
+            throw new UnknownCurrencyException(from, to);
         }
             double convertedAmt = amount / fromRate;
             return convertedAmt * toRate;
