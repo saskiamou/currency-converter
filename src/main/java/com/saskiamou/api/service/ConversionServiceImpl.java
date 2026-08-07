@@ -7,7 +7,7 @@ import java.util.Map;
 @Service
 public class ConversionServiceImpl implements ConversionService {
     private final Map<String, Double> rates = Map.of(
-            "USD", 1.0,
+            "USD", 1.0, //  Eventually update to a changing exchg rate, for variables to store and compute
             "EUR", 0.92,
             "GBP", 0.79
     );
@@ -21,7 +21,7 @@ public class ConversionServiceImpl implements ConversionService {
         if (fromRate == null || toRate == null) {
             throw new UnknownCurrencyException("Unknown currency: " + (fromRate == null ? from : to));
         }
-            double amountInUsd = amount / rates.get(from);
-            return amountInUsd * rates.get(to);
+            double convertedAmt = amount / fromRate;
+            return convertedAmt * toRate;
     }
 }
