@@ -1,4 +1,6 @@
 package com.saskiamou.api.service;
+import com.saskiamou.api.UnknownCurrencyException;
+
 import org.springframework.stereotype.Service;
 import java.util.Map;
 
@@ -10,8 +12,16 @@ public class ConversionServiceImpl implements ConversionService {
             "GBP", 0.79
     );
 
-    public double convert(String to, String from, double amount) {
-        double amountInUsd = amount / rates.get(from);
-        return amountInUsd * rates.get(to);
+    /** Convert  method - get() rate keys/values from Map. If null value throw exception
+    else store and return amount calculation
+     **/
+    public double convert(String from, String to, double amount) {
+        Double fromRate = rates.get(from);
+        Double toRate = rates.get(to);
+        if (fromRate == null || toRate == null) {
+            throw new UnknownCurrencyException("Unknown currency: " + (fromRate == null ? from : to));
+        }
+            double amountInUsd = amount / rates.get(from);
+            return amountInUsd * rates.get(to);
     }
 }

@@ -1,9 +1,7 @@
 package com.saskiamou.api.Controller;
-import com.saskiamou.api.model.ConversionRequest;
 import com.saskiamou.api.service.ConversionService;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +17,9 @@ public class CurrencyController {
 
     @GetMapping
     public double convert(
-            @RequestParam String to,
             @RequestParam String from,
+            @RequestParam String to,
             @RequestParam double amount) {
-                return conversionService.convert(to, from, amount);
+                return conversionService.convert(from, to, amount);
     }
 }
