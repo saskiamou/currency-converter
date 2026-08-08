@@ -3,7 +3,9 @@ import com.saskiamou.config.ConversionProperties;
 import com.saskiamou.exception.UnknownCurrencyException;
 
 import org.springframework.stereotype.Service;
-import java.util.Map;
+
+import java.util.Locale;
+
 
 @Service
 public class ConversionServiceImpl implements ConversionService {
@@ -18,8 +20,10 @@ public class ConversionServiceImpl implements ConversionService {
     else store and return amount calculation
      **/
     public double convert(String from, String to, double amount) {
-        Double fromRate = conversionProperties.rates().get(from);
-        Double toRate = conversionProperties.rates().get(to);
+        String normalizedFrom = from.toLowerCase(Locale.ROOT);
+        String normalizedTo = to.toLowerCase(Locale.ROOT);
+        Double fromRate = conversionProperties.rates().get(normalizedFrom);
+        Double toRate = conversionProperties.rates().get(normalizedTo );
         if (fromRate == null || toRate == null) {
             throw new UnknownCurrencyException(from, to);
         }
