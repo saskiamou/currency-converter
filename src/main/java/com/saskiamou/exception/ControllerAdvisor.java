@@ -1,4 +1,4 @@
-package com.saskiamou.Exception;
+package com.saskiamou.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

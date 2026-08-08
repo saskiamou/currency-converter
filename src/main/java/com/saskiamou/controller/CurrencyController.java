@@ -1,4 +1,4 @@
-package com.saskiamou.Controller;
+package com.saskiamou.controller;
 import com.saskiamou.service.ConversionService;
 
 import org.springframework.web.bind.annotation.GetMapping;

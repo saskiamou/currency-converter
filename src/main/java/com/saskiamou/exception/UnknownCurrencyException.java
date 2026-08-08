@@ -1,4 +1,4 @@
-package com.saskiamou.Exception;
+package com.saskiamou.exception;
 
 public class UnknownCurrencyException extends RuntimeException {
 
