@@ -1,4 +1,5 @@
 package com.saskiamou.service;
+import com.saskiamou.config.ConversionProperties;
 import com.saskiamou.exception.UnknownCurrencyException;
 
 import org.springframework.stereotype.Service;
@@ -6,18 +7,19 @@ import java.util.Map;
 
 @Service
 public class ConversionServiceImpl implements ConversionService {
-    private final Map<String, Double> rates = Map.of(
-            "USD", 1.0, //  Eventually update to a changing exchg rate, for variables to store and compute
-            "EUR", 0.92,
-            "GBP", 0.79
-    );
+    private final ConversionProperties conversionProperties;
+
+    public ConversionServiceImpl(ConversionProperties conversionProperties) {
+        this.conversionProperties = conversionProperties;
+    }
+
 
     /** Convert  method - get() rate keys/values from Map. If null value throw exception
     else store and return amount calculation
      **/
     public double convert(String from, String to, double amount) {
-        Double fromRate = rates.get(from);
-        Double toRate = rates.get(to);
+        Double fromRate = conversionProperties.rates().get(from);
+        Double toRate = conversionProperties.rates().get(to);
         if (fromRate == null || toRate == null) {
             throw new UnknownCurrencyException(from, to);
         }
