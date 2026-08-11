@@ -4,7 +4,6 @@ import com.saskiamou.exception.UnknownCurrencyException;
 
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class ConversionServiceImpl implements ConversionService {
     ExchangeRateClient exchangeRateClient;
