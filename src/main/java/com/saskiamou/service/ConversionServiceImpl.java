@@ -1,33 +1,28 @@
 package com.saskiamou.service;
-import com.saskiamou.config.ConversionProperties;
+import com.saskiamou.dto.RatesDto;
 import com.saskiamou.exception.UnknownCurrencyException;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
-
 
 @Service
 public class ConversionServiceImpl implements ConversionService {
-    private final ConversionProperties conversionProperties;
+    ExchangeRateClient exchangeRateClient;
 
-    public ConversionServiceImpl(ConversionProperties conversionProperties) {
-        this.conversionProperties = conversionProperties;
+    public ConversionServiceImpl(ExchangeRateClient exchangeRateClient ) {
+        this.exchangeRateClient = exchangeRateClient;
     }
 
 
-    /** Convert  method - get() rate keys/values from Map. If null value throw exception
-    else store and return amount calculation
-     **/
     public double convert(String from, String to, double amount) {
-        String normalizedFrom = from.toLowerCase(Locale.ROOT);
-        String normalizedTo = to.toLowerCase(Locale.ROOT);
-        Double fromRate = conversionProperties.rates().get(normalizedFrom);
-        Double toRate = conversionProperties.rates().get(normalizedTo );
-        if (fromRate == null || toRate == null) {
+        RatesDto rates = exchangeRateClient.getRates(from);
+        Double toRate = rates.rates().get(to);
+        if (toRate == null) {
             throw new UnknownCurrencyException(from, to);
         }
-            double convertedAmt = amount / fromRate;
-            return convertedAmt * toRate;
+            return amount * toRate;
     }
+
+
+
 }

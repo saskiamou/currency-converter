@@ -15,7 +15,7 @@ public class CurrencyController {
         this.conversionService = conversionService;
     }
 
-    @GetMapping
+    @GetMapping("/convert")
     public double convert(
             @RequestParam String from,
             @RequestParam String to,
