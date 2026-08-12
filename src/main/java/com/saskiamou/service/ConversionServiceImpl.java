@@ -1,6 +1,7 @@
 package com.saskiamou.service;
 import com.saskiamou.dto.RatesDto;
 import com.saskiamou.exception.UnknownCurrencyException;
+import java.util.Locale;
 
 import org.springframework.stereotype.Service;
 
@@ -12,16 +13,19 @@ public class ConversionServiceImpl implements ConversionService {
         this.exchangeRateClient = exchangeRateClient;
     }
 
-
     public double convert(String from, String to, double amount) {
-        RatesDto rates = exchangeRateClient.getRates(from);
-        Double toRate = rates.rates().get(to);
-        if (toRate == null) {
-            throw new UnknownCurrencyException(from, to);
+        String base = from.toUpperCase(Locale.ROOT);
+        String target = to.toUpperCase(Locale.ROOT);
+
+        if (base.equals(target)) {
+            return amount;
         }
-            return amount * toRate;
+
+        RatesDto rates = exchangeRateClient.getRates(base);
+        Double toRate = rates.rates().get(target);
+        if (toRate == null) {
+            throw new UnknownCurrencyException(target);
+        }
+        return amount * toRate;
     }
-
-
-
 }
