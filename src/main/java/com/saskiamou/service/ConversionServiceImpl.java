@@ -12,11 +12,14 @@ public class ConversionServiceImpl implements ConversionService {
     public ConversionServiceImpl(ExchangeRateClient exchangeRateClient ) {
         this.exchangeRateClient = exchangeRateClient;
     }
-
+    /** Convert method stores passed from/to/amnt params
+     * convert entries to uppercase to avoid capitalization mismatch
+     * ROOT Locale constant used as base identifier of country currency code. **/
     public double convert(String from, String to, double amount) {
         String base = from.toUpperCase(Locale.ROOT);
         String target = to.toUpperCase(Locale.ROOT);
 
+        // Conditional returns unchanged currency if both params are equal (ex. USD to USD)
         if (base.equals(target)) {
             return amount;
         }
