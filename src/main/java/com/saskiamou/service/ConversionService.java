@@ -1,5 +1,7 @@
 package com.saskiamou.service;
+
+import com.saskiamou.dto.ConversionResponse;
 // Interface declares method to be used in implementation file
 public interface ConversionService {
-    double convert(String from, String to, double amount);
+    ConversionResponse convert(String from, String to, double amount);
 }
