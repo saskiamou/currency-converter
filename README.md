@@ -5,7 +5,7 @@ exchange rates** from the [Frankfurter](https://frankfurter.dev) API, with in-me
 
 ## Stack
 
-| | |                                                                                                          
+| | |
 |---|---|
 | Java | 25 |
 | Spring Boot | 4.1.0 (Spring Framework 7) |
@@ -32,6 +32,8 @@ The app starts on <http://localhost:8080>.
 
 While app is running:
 
+| | |
+|---|---|
 | Swagger UI | <http://localhost:8080/swagger-ui.html> |
 | OpenAPI spec (JSON) | <http://localhost:8080/v3/api-docs> |
 | OpenAPI spec (YAML) | <http://localhost:8080/v3/api-docs.yaml> |
